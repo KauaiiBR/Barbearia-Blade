@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 0%;
+  --foreground: 0 0% 100%;
+  --card: 0 0% 4%;
+  --card-foreground: 0 0% 100%;
+  --primary: 0 0% 100%;
+  --primary-foreground: 0 0% 0%;
+  --secondary: 0 0% 10%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 0 0% 12%;
+  --muted-foreground: 0 0% 65%;
+  --border: 0 0% 18%;
+  --input: 0 0% 15%;
+  --ring: 0 0% 100%;
+  --radius: 0.25rem;
+}
+
+html, body { background: #000; color: #fff; scroll-behavior: smooth; }
+
+.font-display { font-family: var(--font-playfair), serif; }
+.font-bebas { font-family: var(--font-bebas), sans-serif; letter-spacing: 0.05em; }
+
+/* Barber pole animation */
+@keyframes barberpole {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 60px; }
+}
+.barber-pole {
+  background: repeating-linear-gradient(45deg, #fff 0 10px, #000 10px 20px, #fff 20px 30px);
+  animation: barberpole 2s linear infinite;
+}
+
+/* Marquee */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 30s linear infinite; }
+
+/* Grain */
+.grain::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  opacity: 0.08;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* Underline hover */
+.link-hover { position: relative; }
+.link-hover::after {
+  content: ''; position: absolute; left: 0; bottom: -4px;
+  width: 0; height: 1px; background: #fff; transition: width .3s ease;
+}
+.link-hover:hover::after { width: 100%; }
+
+/* Input styles */
+input, select, textarea { color-scheme: dark; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #555; }
